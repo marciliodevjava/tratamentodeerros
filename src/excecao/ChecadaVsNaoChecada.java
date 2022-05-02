@@ -4,18 +4,17 @@ import javax.management.RuntimeErrorException;
 
 public class ChecadaVsNaoChecada {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		try {
 			geraErro1();
-		} catch (RuntimeErrorException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		geraErro2();
 
 		System.out.println("Fim");
-
 	}
 
 	// Exceção não verificada
@@ -23,7 +22,12 @@ public class ChecadaVsNaoChecada {
 		throw new RuntimeErrorException(null, "Ocorreu um erro bem legal #1");
 	}
 
-	static void geraErro2() {
-		new Exception("Ocorreu um erro bem legal #2");
+	// Exceção verificada, tem que colocar na assinatura o "throws Excepetion"
+	static void geraErro2() throws Exception {
+		try {
+			throw new Exception("Ocorreu um erro bem legal #2");
+		} catch (Exception e) {
+			System.out.println("Que legal. Ocorreu um erro bem legal #2");
+		}
 	}
 }
