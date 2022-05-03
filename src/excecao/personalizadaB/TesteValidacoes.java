@@ -20,6 +20,8 @@ public class TesteValidacoes {
 			System.out.println(e.getMessage());
 		}
 
+		Validar.aluno(null);
+		
 		System.out.println("Fim");
 
 	}
